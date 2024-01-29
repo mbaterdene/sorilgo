@@ -1,0 +1,37 @@
+{% extends "base.html" %} {% load i18n %}{% load static %}{% block title %}{% trans "Нийтлэл" %}{% endblock %}{% block content %}
+
+<section class="pt-page" data-id="">
+    <div class="section-title-block">
+        <h2 class="section-title">Нийтлэл</h2>
+        <h5 class="section-description">Математикийн эргэн тойронд</h5>
+    </div>
+    <div class="blog-masonry">
+        {% for blog in blog_post1.all %}
+        <!-- Blog Post -->
+        <div class="item">
+            <div class="blog-card">
+                <div class="media-block">
+                    <a href="{% url 'blog_post_get' blog.id %}">
+                        <img class="post-image img-responsive" src="{{ blog.figure.url }}" alt="" height="100px" />
+                        <div class="mask"></div>
+                        <div class="post-date"><span class="day">{{ blog.submision_date|date:"d" }}</span><span class="month">{{ blog.submision_date|date:"M" }}</span>
+                            <span class="year">{{ blog.submision_date|date:"Y" }}</span></div>
+                    </a>
+                </div>
+                <div class="post-info">
+                    <ul class="category">
+                        <li>
+                            <a href="{% url 'blog_post_get' blog.id %}" ">{{ blog.description }}</a>
+                        </li>
+                    </ul>
+                    <a href="# ">
+                        <h4 class="blog-item-title ">{{ blog.title }}</h4>
+                    </a>
+                 </div>
+            </div>
+        </div>{% endfor %}
+    </div>
+    
+<!-- End of Blog Post -->
+
+ </section>{% endblock content %}

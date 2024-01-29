@@ -1,0 +1,50 @@
+{% extends "base.html" %}{% load i18n %}{% load static %}{% block title %}{% trans "Цахим хичээл" %}{% endblock %} {% block content %}
+<section class="pt-page" data-id="цахим хичээл">
+    <div class="section-title-block">
+        <h2 class="section-title">Цахим сургалт</h2>
+        <h5 class="section-description">Далайд тусал нэмэр</h5>
+    </div>
+
+    <!-- Portfolio Content -->
+    <div class="portfolio-content">
+        <!-- Portfolio filter -->
+        <ul id="portfolio_filters" class="portfolio-filters">
+            <li class="active">
+                <a class="filter btn btn-sm btn-link active" data-group="all">Бүгд</a>
+            </li>
+            <li>
+                <a class="filter btn btn-sm btn-link" data-group="problem">Бодлого</a>
+            </li>
+            <li>
+                <a class="filter btn btn-sm btn-link" data-group="theorem">Онол</a>
+            </li>
+            <li>
+                <a class="filter btn btn-sm btn-link" data-group="video">Видео хичээл</a>
+            </li>
+        </ul>
+        <!-- End of Portfolio filter -->
+
+        <!-- Portfolio Grid -->
+        <div id="portfolio_grid" class="portfolio-grid portfolio-masonry masonry-grid-3">
+            {% for portfoo in lesson_with_video1.all %}
+            <figure class="item" data-groups='["all","{{ portfoo.group }}"]'>
+
+                <a {% if portfoo.group == 'video' %} href="{{portfoo.video}}" class="lightbox mfp-iframe" {% else %} href="{{portfoo.content.url}}" class="lightbox" {% endif %} title="{{portfoo.title}}">
+                    <img src="{{portfoo.image.url}}" alt="">
+                    <div>
+                        <h5 class="name">{{portfoo.name}}</h5>
+                        <small>{{portfoo.title}}</small>
+                        <i class="fa fa-rocket"></i>
+                    </div>
+                </a>
+            </figure>
+
+            {% endfor %}
+
+        </div>
+        <!-- /Portfolio Grid -->
+
+    </div>
+    <!-- /Portfolio Content -->
+
+</section>{% endblock content %}

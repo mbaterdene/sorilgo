@@ -1,0 +1,64 @@
+{% extends 'base.html' %} {% load i18n %} {% load quiz_tags %} {% block title %} {{ sitting.user }} {% trans "-ийн" %} {{ sitting.quiz.title }}{% trans "-ийн үр дүн" %} {% endblock %} {% block content %}
+<section class="pt-page pt-page-6" data-id="">
+    <h2>{% trans "Шалгалтын гарчиг" %}: {{ sitting.quiz.title }}</h2>
+    <p>{{ sitting.quiz.description }}</p>
+    <hr>
+    <p>{% trans "Хэрэглэгч" %}: {{ sitting.user }}</p>
+    <p>{% trans "Дууссан" %}: {{ sitting.end|date }}</p>
+    <p>{% trans "Оноо" %}: {{ sitting.get_percent_correct }}%</p>
+
+    <table class="table table-bordered table-striped">
+
+        <thead>
+            <tr>
+                <th>{% trans "Даалгавар" %}</th>
+                <th>{% trans "Буруу хариулт" %}</th>
+                <th></th>
+                {%if user.is_superuser is True %}<th></th>{% endif %}
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for question in questions %}
+               {% if question.id in sitting.get_incorrect_questions %}
+            <tr>
+                <td>
+                    {{ question.content|safe }} {% if question.figure %}
+                    <div style="max-width: 100px;"><img src="{{ question.figure.url }}" alt="{{ question.figure }}" /></div>
+                    {% endif %}
+                </td>
+                <td>
+                    {{ question|answer_choice_to_string:question.user_answer }}</td>
+             
+                <td>
+                    <div>
+                    {% if request.user.lesson_status.test_videos %}
+                   	 {% if not question.video %}
+                  		  <span>Уучлаарай. Уг бодлогоны бичлэг засвартай байгаа тул та дараа дахин орно уу.</span> 
+                   	 {% else %}
+                        <a class="lightbox mfp-iframe" href="{{question.video}}" >
+                            <button class="btn btn-warning">{% trans "Зөв бодолтыг үзэх" %}</button>
+                        </a>
+                    	{% endif %}
+                  {% else %}
+                  	<p>Хичээл үзэх эрхгүй байна.</p>
+                  {% endif %}
+                    </div>
+                </td>
+                {%if user.is_superuser is True %}
+                <td>
+                    <form action="" method="POST">{% csrf_token %}
+                      <input type=hidden name="qid" value="{{ question.id }}">
+                      <button type="submit" class="btn btn-warning">{% trans "Зөв" %}</button>
+                    </form>
+                </td>
+                {% endif %}
+            </tr>
+			{% endif %}
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+</section>
+{% endblock %}

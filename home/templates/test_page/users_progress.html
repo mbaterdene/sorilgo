@@ -1,0 +1,55 @@
+{% extends "base.html" %} {% load i18n %} {% load quiz_tags %} {% block title %} {% trans "Хэрэглэгчийн явц" %} {% endblock %} {% block description %} {% trans "Хэрэглэгчийн явц" %} {% endblock %} {% block content %}
+<section class="pt-page pt-page-6" data-id="">
+    {% if history %}
+
+    <hr>
+
+    <h1>{% trans "Гүйцэтгэсэн шалгалтуудын мэдээлэл" %}</h1>
+    <p class="lead">
+        {% trans "Шалгалтын анализ" %}
+    </p>
+
+    {%if user.is_superuser is True %}
+    <form action="#">
+        <select>
+		{% for user in User %}
+		<option> {{ user.username }} </option>
+		{% endfor %}
+	</select>
+    </form>
+    <span style="font-size: large; color: lightcoral;">Уг нь хэрэглэгчдийн нэрийг сонгоод бүх хийсэн шалгалтын материалтай танилцах маягийн юм хийх бодолтой.</span>
+    <table class="table table-bordered table-striped">
+
+        <thead>
+            <tr>
+                <th>{% trans "Хэрэглэгч" %}</th>
+                <th>{% trans "Огноо" %}</th>
+                <th>{% trans "Шалгалтын гарчиг" %}</th>
+                <th>{% trans "Зөв бодсон даалгаврын тоо" %}</th>
+                <th>{% trans "Шалгалтын даалгаврын тоо" %}</th>
+                <th>{% trans "Гүйцэтгэлийн хувь" %}</th>
+                <th>{% trans "Гүйцэтгэсэн хугацаа" %}</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for exam in history %}
+
+            <tr>
+                <td>{{ exam.user }}</td>
+                <td>{{ exam.start}}</td>
+                <td>{{ exam.quiz.title }}</td>
+                <td>{{ exam.current_score }}</td>
+                <td>{{ exam.get_max_score }}</td>
+                <td>{{ exam.get_percent_correct }}</td>
+                <td>{{ exam.end|timeuntil:exam.start }}</td>
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    {% endif %} {% endif %} </section>{% endblock %}

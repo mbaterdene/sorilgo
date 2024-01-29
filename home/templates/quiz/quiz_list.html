@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% load i18n %} {% load quiz_tags %} {% block title %}{% trans "Шалгалтууд" %}{% endblock %} {% block content %}
+<section class="pt-page pt-page-6" data-id="">
+    <div class="section-title-block">
+        <h2 class="section-title">{% trans "Одоогоор систем байгаа шалгалтууд" %}</h2>
+        <h5 class="section-description">{% trans "Шалгалт" %}</h5>
+    </div>
+    {% if quiz_list %}
+    <table class="table table-bordered table-striped">
+
+        <thead>
+            <tr>
+                <th>{% trans "Гарчиг" %}</th>
+                <th>{% trans "Шалгалтын төлөв" %}</th>
+                <th>{% trans "Шалгалтын холбоос" %}</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for quiz in quiz_list %}
+
+            <tr>
+                <td>{{ quiz.title }}</td>
+                <td>
+                    {% if quiz.single_attempt is False %} Уг шалгалтыг та хэдэн ч удаа хийж болно. {% else %} Уг шалгалтыг та ганц удаа хийх эрхтэй. Иймд хянамгай ажиллана уу. Амжилт хүсье. {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'quiz_start_page' slug=quiz.url %}">
+				  {% trans "Шалгалт өгөх" %}
+				</a>
+            </tr>
+
+            {% endfor %}
+        </tbody>
+
+    </table>
+
+    {% else %}
+    <p>{% trans "Одоогоор шалгалт ороогүй байна" %}.</p>
+    {% endif %}
+</section>
+{% endblock %}

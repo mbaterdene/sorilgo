@@ -1,0 +1,86 @@
+{% extends "base.html" %}{% load i18n %}{% load static %}{% block title %}{% trans "Холбоо барих" %}{% endblock %} {% block content %}
+<section class="pt-page pt-page-6" data-id="">
+    <div class="section-title-block">
+        <h2 class="section-title">Холбоо барих</h2>
+        <h5 class="section-description">Байршил</h5>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6 subpage-block">
+            <div class="block-title">
+                <h3>Хаяг</h3>
+            </div>
+            <p>Баянгол дүүрэг, Энхтайваны өргөн чөлөө, 25-р эмийн сан, "Auto-KFC"-ийн чанх урд байрлалтай Луна Плаза 6 давхар 604 тоот</p>
+            <div class="contact-info-block">
+                <div class="ci-icon">
+                    <i class="pe-7s-icon pe-7s-map-marker"></i>
+                </div>
+                <div class="ci-text">
+                    <h5>Улаанбаатар, Монгол</h5>
+                </div>
+            </div>
+            <div class="contact-info-block">
+                <div class="ci-icon">
+                    <i class="pe-7s-icon pe-7s-mail"></i>
+                </div>
+                <div class="ci-text">
+                    <h5>sorilgomn@gmail.com</h5>
+                </div>
+            </div>
+            <div class="contact-info-block">
+                <div class="ci-icon">
+                    <i class="pe-7s-icon pe-7s-call"></i>
+                </div>
+                <div class="ci-text">
+                    <h5>89023402, 89009566, 94009566</h5>
+                </div>
+            </div>
+            <div class="contact-info-block">
+                <div class="ci-icon">
+                    <i class="pe-7s-icon pe-7s-check"></i>
+                </div>
+                <div class="ci-text">
+                    <h5>24\7</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-6 subpage-block">
+            <div class="block-title">
+                <h3>Бидэнтэй холбогдох</h3>
+            </div>
+            <form id="contact-form" method="post" action="contact_form/contact_form.php">
+
+                <div class="messages"></div>
+
+                <div class="controls">
+                    <div class="form-group">
+                        <input id="form_name" type="text" name="name" class="form-control" placeholder="Бүтэн нэр" required="required" data-error="Бүтэн нэрээ бичнэ үү!!!">
+                        <div class="form-control-border"></div>
+                        <i class="form-control-icon fa fa-user"></i>
+                        <div class="help-block with-errors"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <input id="form_email" type="email" name="email" class="form-control" placeholder="Цахим хаяг" required="required" data-error="Цахим хаягаа бүрэн зөв бичнэ үү!!!">
+                        <div class="form-control-border"></div>
+                        <i class="form-control-icon fa fa-envelope"></i>
+                        <div class="help-block with-errors"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea id="form_message" name="message" class="form-control" placeholder="Санал хүсэлтээ бидэнд илгээнэ үү!!!" rows="4" required="required" data-error="Уучлаарай санал хүсэлтээ бичнэ үү!!!"></textarea>
+                        <div class="form-control-border"></div>
+                        <i class="form-control-icon fa fa-comment"></i>
+                        <div class="help-block with-errors"></div>
+                    </div>
+
+                    <div class="g-recaptcha" data-sitekey="6LdqmCAUAAAAAMMNEZvn6g4W5e0or2sZmAVpxVqI" data-callback="correctCaptcha"></div>
+
+                    <input type="submit" class="button btn-send" value="Илгээх">
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock content %}

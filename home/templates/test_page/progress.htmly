@@ -1,0 +1,87 @@
+{% extends "base.html" %} {% load i18n %} {% load quiz_tags %} {% block title %} {% trans "Хэрэглэгчийн явц" %} {% endblock %} {% block description %} {% trans "Хэрэглэгчийн явц" %} {% endblock %} {% block content %}
+<section class="pt-page pt-page-6" data-id="">
+    {% if cat_scores %}
+    <div class="section-title-block">
+        <h2 class="section-title">{% trans "Хэрэглэгчийн статистик" %}</h2>
+        <h5 class="section-description">{% trans "Математикийн судлагдахуунуудын хувьд" %}</h5>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-8 subpage-block">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>{% trans "Ай" %}</th>
+                        <th>{% trans "Зөв бодсон бодлогын тоо" %}</th>
+                        <th>{% trans "Нийт бодсон бодлогын тоо" %}</th>
+                        <th>{% trans "Гүйцэтгэлийн хувь" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cat, value in cat_scores.items %}
+                    <tr>
+                        <td>{{ cat }}</td>
+                        <td>{{ value.0 }}</td>
+                        <td>{{ value.1 }}</td>
+                        <td>{{ value.2 }}%</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-6 col-md-4 subpage-block">
+            {% for cat, value in cat_scores.items %}
+            <h4>{{ cat }}</h4>
+            <div class="skill-container">
+                <div class="skill-percentage" style="width: {{ value.2 }}%;"></div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %} {% if exams %}
+
+    <hr>
+    <div class="section-title-block">
+        <h2 class="section-title">{% trans "Гүйцэтгэсэн шалгалтуудын мэдээлэл" %}</h2>
+        <h5 class="section-description">{% trans "Шалгалтын анализ" %}</h5>
+    </div>
+
+    <table class="table table-bordered table-striped">
+
+        <thead>
+            <tr>
+                <th>{% trans "Огноо" %}</th>
+                <th>{% trans "Шалгалтын гарчиг" %}</th>
+                <th>{% trans "Зөв бодсон" %}</th>
+                <th>{% trans "Хувь" %}</th>
+                <th>{% trans "Гүйцэтгэсэн хугацаа" %}</th>
+		<th>{% trans "Алдсан бодлогоны бодолт хичээл" %}</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for exam in exams %}
+
+            <tr>
+                <td>{{ exam.start|date:"m/d"}}</td>
+                <td>{{ exam.quiz.title }}</td>
+                <td>{{ exam.current_score }}</td>
+                <td>{{ exam.get_percent_correct }}%</td>
+                <td>{{ exam.end|timeuntil:exam.start }}</td>
+           <td>
+                    {% if request.user.lesson_status.test_videos %}
+                    <a href="{% url 'quiz_progress_detail' pk=exam.id %}">
+                  {% trans "Үзэх" %}
+                  {% else %}
+                  <p>Хичээл үзэх эрхгүй байна.</p>
+                  {% endif %}
+				</a></td> 
+	   </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+    {% endif %}
+</section>{% endblock %}

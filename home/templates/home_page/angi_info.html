@@ -1,0 +1,66 @@
+{% extends "base.html" %} {% load i18n %}{% load static %}{% block title %}{% trans "Нийтлэл" %}{% endblock %}{% block content %}
+
+<section class="pt-page" data-id="">
+    <div class="section-title-block">
+        <h2 class="section-title">Ангийн мэдээлэл</h2>
+        <h5 class="section-description">Танд энэ өдрийн мэнд хүргэе</h5>
+    </div>
+    <div class="blog-masonry">
+        <table class="table table-bordered table-striped">
+
+            <thead>
+                <tr>
+                    <th>{% trans "№" %}</th>
+                    <th>{% trans "Ангийн нэр" %}</th>
+                    <th>Нэрс</th>
+                    <th>Холбоо барих дугаар</th>
+                    <th>Нэмэлт мэдээлэл</th>
+			<th>элсэлт</th>
+<th>Хамгийн сүүлд</th>             
+   </tr>
+            </thead>
+            <tbody>
+                {% for angi in angi_info1.all %}
+                <tr>
+                    <td>
+                        {{ forloop.counter }}.
+                    </td>
+                    <td>
+                         {{ angi.angi_info }} </a>
+                    </td>
+                    <td>
+                        {% for s_user in angi.students.all %}
+                        <p>{{ forloop.counter }}. <a href="{% url 'student_info' pk=s_user.id %}">{{ s_user.first_name }}</a></p>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for s_user in angi.students.all %}
+                        <p>{{ s_user.user_info.phone }}</p>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for s_user in angi.students.all %}
+                        <p>{{ s_user.user_info.add_info }}</p>
+                        {% endfor %}
+                    </td>
+		<td>
+                        {% for s_user in angi.students.all %}
+                        <p>{{ s_user.date_joined|date:"Y/m/d" }}</p>
+                        {% endfor %}
+                    </td>
+                
+		<td>
+                        {% for s_user in angi.students.all %}
+                        <p>{{ s_user.last_login|date:"Y/m/d" }}</p>
+                        {% endfor %}
+                
+    </td>
+</tr>
+                {% endfor %}
+            </tbody>
+       
+    </div>
+    
+<!-- End of Blog Post -->
+
+ </section>{% endblock content %}

@@ -1,0 +1,94 @@
+{% extends "base.html" %}{% load static %}{% load i18n %} {% block title %}{% trans "Нэвтрэх" %}{% endblock %}{% block content %}
+<section class="pt-page pt-page-6" data-id="">
+    <div class="section-title-block">
+        <h2 class="section-title">Нэвтрэх</h2>
+        <h5 class="section-description">Сорилго таны зорилгыг хурцална.</h5>
+    </div>
+   
+    <div class="row">
+        
+        <div class="col-sm-6 col-md-6 subpage-block">
+            <div class="general-info">
+                <div class="block-title">
+                    <h3>СОРИЛГО.МН-д хэрхэн нэгдэх вэ?</h3>
+                </div>
+                <p>Хэрвээ та сорилго.мн-д нэгдээгүй бол дараах линкээр орж бүртгүүлээрэй.</p>
+                <center>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeNh_JjvOtKWZqsKOMn5E_oXVrzdbtWsOxLjCzdIzMN1Q6woA/viewform" >ЭНД ДАРЖ БҮРТГҮҮЛ</a>
+                </center>
+                
+            </div>
+        </div>
+        
+        <div class="col-sm-6 col-md-6 subpage-block">
+            <div class="block-title">
+                <h3>СОРИЛГО.МН-д нэгдсэнээр танд дараах давуу талуудыг олгоно.</h3>
+            </div>
+            <div class="testimonials owl-carousel">
+            <div class="testimonial-item">
+                <div class="testimonial-content">
+                    <div class="testimonial-text">
+                        1. Төлбөрийг нэг удаа төлнө. /4-р сарын 30 хүртэл 60% хөнгөлттэй байгаа/
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-item">
+                <div class="testimonial-content">
+                    <div class="testimonial-text">
+                        2. Хугацаагүй ашиглана.
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-item">
+                <div class="testimonial-content">
+                    <div class="testimonial-text">
+                        3. Бэлэн бодлогын сантай ажиллана. /2500+ гаруй бодлого/ 
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-item">
+                <div class="testimonial-content">
+                    <div class="testimonial-text">
+                        4. Таван тест тутамд СОРИЛГО тесттэй хязгааргүй ажиллана. /150 бодлогоос санамсаргүй сонгогдох/ 
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-item">
+                <div class="testimonial-content">
+                    <div class="testimonial-text">
+                        5. Тест бүрийн эцэст хариуг шалгаж, үнэлгээ хийнэ. /буруу хариултыг бодлогын хамт харуулна/
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-item">
+                <div class="testimonial-content">
+                    <div class="testimonial-text">
+                        6. Буруу хариултад заавар тайлбар өгнө. /видео хэлбэрээр/
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-item">
+                <div class="testimonial-content">
+                    <div class="testimonial-text">
+                        7. Сул эзэмшилттэй айн /Тоолол, Алгебр, Геометр, Статистик.../ хүрээнд танхимын болон цахим сургалтад хамрагдах боломжтой
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 offset-md-3">
+        <h1 class="text-center">Нэвтрэх</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Системд нэвтрэх эрхтэй нэр" name="username">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Нууц үг" name="password">
+            </div>
+            <button type="submit" class="btn btn-primary">Нэвтрэх</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

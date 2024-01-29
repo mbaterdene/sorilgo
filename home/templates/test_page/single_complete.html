@@ -1,0 +1,14 @@
+{% extends "base.html" %} {% load i18n %} {% load quiz_tags %} {% block title %} {{ quiz.title }} {% endblock %} {% block description %} {{ quiz.title }} - {{ quiz.description }} {% endblock %} {% block content %}
+
+<section class="pt-page" data-id="">
+    <div class="section-title-block">
+        <h2 class="section-title">Шалгалтын төлөв</h2>
+        <h5 class="section-description">Танд амжилт хүсье</h5>
+    </div>
+    {% if user.is_authenticated %}
+    <p>{% trans "Уг шалгалтыг ганц удаа гүйцэтгэх боломжтой. Уучлаарай та уг шалгалтыг ажилласан байна. " %}.</p>
+    {% else %}
+    <p>{% trans "Энэ шалгалтад зөвхөн нэвтэрсэн хэрэглэгчид хандах боломжтой" %}.</p>
+    {% endif %}
+</section>
+{% endblock %}

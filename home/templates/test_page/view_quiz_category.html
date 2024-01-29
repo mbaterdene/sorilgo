@@ -1,0 +1,19 @@
+{% extends 'base.html' %} {% load i18n %} {% block title %}{% trans "Шалгалт" %} {{ category.category }}{% endblock %} {% block content %}
+<section class="pt-page pt-page-6" data-id="">
+    <h1>{% trans "Энэ шалгалт" %} <strong>{{ category.category }} </strong>{% trans "айд хамаарна." %}</h1>
+
+    {% with object_list as quizzes %} {% if quizzes %}
+    <ul>
+        {% for quiz in quizzes %}
+        <li>
+            <a href="{% url 'quiz_question' quiz_name=quiz.url %}">
+				{{ quiz.title }}
+			  </a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>{% trans "Энэ шалгалт байхгүй байна." %}</p>
+    {% endif %} {% endwith %}
+</section>
+{% endblock %}

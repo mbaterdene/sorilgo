@@ -1,0 +1,64 @@
+ {% extends "base.html" %}{% load static %} {% load i18n %}{% block title %}{% trans "Нүүр хуудас" %}{% endblock %}{% block content %}
+<section class="pt-page section-with-bg section-paddings-0" style="background-image: url({% static 'home_page_bg_1.jpg' %});" data-id="">
+    <div class="home-page-block-bg">
+        <div class="mask"></div>
+    </div>
+    <div class="home-page-block">
+        {% for home in home_info1.all %}
+        <div class="v-align">
+            <h2>{{ home.home_title }}</h2>
+            <div id="rotate" class="text-rotate">
+                <div>
+                    <p class="home-page-description">{{ home.home_copyright }}</p>
+                </div>
+                <div>
+                    <p class="home-page-description">{{ home.home_description }}</p>
+                </div>
+            </div>
+
+            <div class="block end" style="text-align: center">
+                <ul class="info-list">
+                    {% if user.is_authenticated %}
+                    <li>
+                                    <div style="position: relative; margin: 30px auto 20px; max-width: 150px; text-align: center; z-index: 0;">
+                                        <img style="position: relative; border-radius: 20px; border: 2px solid #e5e5e5;"
+                                            src="/media/{{ user.user_info.image }}"
+                                            alt="image">
+                                        <div class="mask"></div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <span class="title">
+                                        Системд нэвтрэх эрх:
+                                    </span>
+                                    {%if user.is_superuser is True %}
+                                        Супер Хэрэглэгч буюу Системийн Админ
+                                    {% else %}
+                                        СОРИЛГО.МН цахим боловсролын системийн хэрэглэгч буюу сурагч
+                                    {% endif %}
+                                </li>
+                                <li>
+                                    <span class="title">Хэрэглэгчийн нэр:</span>{{user.last_name}} овогтой {{user.first_name}}
+                                </li>
+                                <li>
+                                    <span class="title">Хэрэглэгчийн хүйс:</span>
+                                    {{user.user_info.get_gender_display}}
+                                </li>
+                                <li>
+                                    <span class="title">Элссэн он/сар/өдөр:</span>
+                                    {{user.date_joined|date:"Y/m/d"}}
+                                </li>
+                    {% else %}
+                    <li><span class="title">Зорилго:</span><span class="value">{{ home.home_rule }}</span></li>
+                    <li><span class="title">Хаяг:</span><span class="value">{{ home.home_address }}</span></li>
+                    <li><span class="title">Цахим хаяг:</span><span class="value"><a href="mailto:sorilgomn@gmail.com">{{ home.home_email }}</a></span></li>
+                    <li><span class="title">Холбоо барих дугаар:</span><span class="value">{{ home.home_phone }}</span></li>
+                    <li><span class="title">Цагийн хувиар:</span><span class="value available">{{ home.home_time }}</span></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>{% endblock content %}

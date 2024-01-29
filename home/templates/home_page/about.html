@@ -1,0 +1,131 @@
+{% extends "base.html" %}{% load i18n %}{% block title %}{% trans "Бидний тухай" %}{% endblock %}{% block content %}{% load static %} {% for about in about_us1.all %}
+<section class="pt-page" data-id="">
+    <div class="section-title-block">
+        <h2 class="section-title">{{about.about_title}}</h2>
+        <h5 class="section-description">{{about.about_description}}</h5>
+    </div>
+    {% endfor %}
+    <div class="row">
+        {% for about in about_us1.all %}
+        <div class="col-sm-6 col-md-6 subpage-block">
+            <div class="general-info">
+                <div class="block-title">
+                    <h3>{{about.about_general_info_title}}</h3>
+                </div>
+                <p>{{about.general_info}}</p>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="col-sm-6 col-md-6 subpage-block">
+            <div class="block-title">
+                <h3>Философи</h3>
+            </div>
+            <div class="testimonials owl-carousel">
+                {% for testi in testimonial1.all %}
+                <!-- Testimonial -->
+                <div class="testimonial-item">
+                    <!-- Testimonial Content -->
+                    <div class="testimonial-content">
+                        <div class="testimonial-text">
+                            <p>"{{ testi.testimonial }}"</p>
+                        </div>
+                    </div>
+                    <!-- /Testimonial Content -->
+                    <!-- Testimonial Author -->
+                    <div class="testimonial-credits">
+                        <!-- Picture -->
+                        <div class="testimonial-picture">
+                            <img src="{{testi.author_image.url}}" alt="">
+                        </div>
+                        <!-- /Picture -->
+                        <!-- Testimonial author information -->
+                        <div class="testimonial-author-info">
+                            <p class="testimonial-author">{{testi.author}}</p>
+                            <p class="testimonial-firm">{{testi.author_firm}}</p>
+                        </div>
+                    </div>
+                    <!-- /Testimonial author information -->
+                </div>
+                <!-- End of Testimonial  -->
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Services block -->
+    <div class="block-title">
+        <h3>Үйлчилгээ</h3>
+    </div>
+
+    <div class="row">
+        {% for service in services1.all %}
+        <div class="col-sm-6 col-md-3 subpage-block">
+            <div class="service-block">
+                <div class="service-info">
+                    <img src="{{service.image.url}}" alt="">
+                    <h4>{{ service.name }}</h4>
+                    <p>{{ service.description }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <!-- End of Services block -->
+
+    <!-- Clients block -->
+    <div class="block-title">
+        <h3>Хамтрагч байгууллагууд</h3>
+    </div>
+
+    <div class="row">
+        {% for clients in clients1.all %}
+        <div class="col-sm-4 col-md-2 subpage-block">
+            <div class="client_block">
+                <a href="{{clients.client_url}}" target="_blank"><img src="{{clients.client_image.url}}" alt="{{clients.client_name}}"></a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <!-- End of Clients block -->
+
+    <!-- Fun facts block -->
+    <div class="block-title">
+        <h3>Сонирхолтой пакт</h3>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-3 subpage-block">
+            <div class="fun-fact-block gray-bg">
+                <i class="pe-7s-icon pe-7s-smile"></i>
+                <h4>Сурагчдын тоо</h4>
+                <span class="fun-value">153</span>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3 subpage-block">
+            <div class="fun-fact-block">
+                <i class="pe-7s-icon pe-7s-alarm"></i>
+                <h4>Ажилласан цаг</h4>
+                <span class="fun-value">6,256</span>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3 subpage-block">
+            <div class="fun-fact-block gray-bg">
+                <i class="pe-7s-icon pe-7s-medal"></i>
+                <h4>Сурагчдын амжилт</h4>
+                <span class="fun-value">41</span>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3 subpage-block">
+            <div class="fun-fact-block">
+                <i class="pe-7s-icon pe-7s-coffee"></i>
+                <h4>Кофены хэрэглээ</h4>
+                <span class="fun-value">20 кг/жилд</span>
+            </div>
+        </div>
+    </div>
+    <!-- End of Fun fucts block -->
+</section>
+{% endblock content %}

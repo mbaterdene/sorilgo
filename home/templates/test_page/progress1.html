@@ -1,0 +1,94 @@
+{% extends "base.html" %} {% load i18n %} {% load quiz_tags %} {% block title %} {% trans "Хэрэглэгчийн явц" %} {% endblock %} {% block description %} {% trans "Хэрэглэгчийн явц" %} {% endblock %} {% block content %}
+<section class="pt-page pt-page-6" data-id="">
+    
+    <div class="section-title-block">
+        {% for ddd in exams %}
+        {% if forloop.first %}
+        <h2 class="section-title">Сурагч "{{ ddd.user.first_name|upper }}"-н явцийн мэдээлэл</h2>
+        {% endif %}
+        {% endfor %}
+        <h5 class="section-description">{% trans "Математикийн судлагдахуунуудын хувьд" %}</h5>
+    </div>
+    {% if cat_scores %}
+    <div class="row">
+        <div class="col-sm-6 col-md-8 subpage-block">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>{% trans "Ай" %}</th>
+                        <th>{% trans "Зөв бодсон бодлогын тоо" %}</th>
+                        <th>{% trans "Нийт бодсон бодлогын тоо" %}</th>
+                        <th>{% trans "Гүйцэтгэлийн хувь" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cat, value in cat_scores.items %}
+                    <tr>
+                        <td>{{ cat }}</td>
+                        <td>{{ value.0 }}</td>
+                        <td>{{ value.1 }}</td>
+                        <td>{{ value.2 }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-6 col-md-4 subpage-block">
+            {% for cat, value in cat_scores.items %}
+            <h4>{{ cat }}</h4>
+            <div class="skill-container">
+                <div class="skill-percentage" style="width: {{ value.2 }}%;"></div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %} {% if exams %}
+
+    <hr>
+    <div class="section-title-block">
+        {% for ddd in exams %}
+        {% if forloop.first %}
+            <h2 class="section-title">Сурагч "{{ ddd.user.first_name|upper }}"-н өгсөн шалгалт</h2>
+        {% endif %}
+        {% endfor %}
+        <h5 class="section-description">{% trans "Шалгалтын анализ" %}</h5>
+    </div>
+
+    <table class="table table-bordered table-striped">
+
+        <thead>
+            <tr>
+                <th>{% trans "Огноо" %}</th>
+                <th>{% trans "Шалгалтын гарчиг" %}</th>
+                <th>{% trans "Зөв бодсон даалгаврын тоо" %}</th>
+                <th>{% trans "Шалгалтын даалгаврын тоо" %}</th>
+                <th>{% trans "Гүйцэтгэлийн хувь" %}</th>
+                <th>{% trans "Гүйцэтгэсэн хугацаа" %}</th>
+		<th>{% trans "Алдсан бодлогоны бодолт хичээл" %}</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for exam in exams %}
+
+            <tr>
+                <td>{{ exam.start|date:"Y/m/d"}}</td>
+                <td>{{ exam.quiz.title }}</td>
+                <td>{{ exam.current_score }}</td>
+                <td>{{ exam.get_max_score }}</td>
+                <td>{{ exam.get_percent_correct }}</td>
+                <td>{{ exam.end|timeuntil:exam.start }}</td>
+                 <td>
+                    <a href="{% url 'quiz_progress_detail' pk=exam.id %}">{% trans "Үзэх" %}
+				</a></td> 
+	   </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+    {% endif %}
+</section>{% endblock %}
+

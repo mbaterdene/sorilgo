@@ -1,0 +1,119 @@
+{% extends "base.html" %}{% load i18n %} {% load static %}{% block title %}{% trans "Нийтлэл" %}{% endblock %}{% block content %}
+<!-- Mobile Header -->
+{% for blog in blog_post2 %}
+<section class="pt-page pt-page-5" data-id="">
+    <div class="section-title-block">
+        <h2 class="section-title">Нийтлэл</h2>
+        <h5 class="section-description">Математикийн эргэн тойронд</h5>
+    </div>
+
+    <h1>{{ blog.title }}</h1>
+    <ul class="tags">
+        <li><a>Математик</a></li>
+        <li><a>Геометр</a></li>
+        <li><a>Анализ</a></li>
+        <li><a>Алгебр</a></li>
+        <li><a>Тоо тоолол</a></li>
+    </ul>
+
+    <p> {{ blog.content|safe }} </p>
+    <div class="post-info">
+        <span class="autor"><i class="fa fa-fw fa-user"></i> {{ blog.author.first_name }}</span>
+        <span class="divider">|</span>
+        <span class="date"><i class="fa fa-fw fa-clock-o"></i> {{ blog.submision_date|date:"M d, Y" }}</span>
+        <!-- Share Buttons -->
+        <div class="btn-group share-buttons pull-right hidden-xs">
+            <a href="#" target="_blank" class="btn"><i class="fa fa-facebook"></i> </a>
+            <a href="#" target="_blank" class="btn"><i class="fa fa-twitter"></i> </a>
+            <!-- <a href="#" target="_blank" class="btn"><i class="fa fa-dribbble"></i> </a> -->
+        </div>
+        <!-- /Share Buttons -->
+    </div>
+
+    <div class="post-comments">
+        <!-- <div class="block-title">
+            <h3>Сэтгэгдэл (3)</h3>
+        </div>
+
+        <div class="media">
+            <a class="pull-left" href="#">
+                <img class="media-object" src="{% static 'comment_photo_2.png' %}" alt="">
+            </a>
+            <div class="media-body">
+                <div class="media-heading">
+                    <a href="#">Болд</a> <span class="divider">|</span> <span class="light-gray">10 цагийн өмнө</span>
+                </div>
+                <p>Их таалагдлаа амжилт залуусаа</p>
+                <div class="media-footer">
+                    <a href="#"><i class="fa fa-reply"></i> Хариулах</a>
+                    <span class="divider"></span>
+                    <i class="fa fa-thumbs-up"></i>
+                    <span>108</span>
+                    <i class="fa fa-thumbs-down"></i>
+                    <span>0</span>
+                </div>
+
+                <div class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object" src="{% static 'comment_photo_1.png' %}" alt="">
+                    </a>
+                    <div class="media-body">
+                        <div class="media-heading">
+                            <a href="#">Дорж</a> <span class="divider">|</span> <span class="light-gray">5 цагийн өмнө</span>
+                        </div>
+                        <p>Тиймээ алаад өгсөн байна.</p>
+                        <div class="media-footer">
+                            <a href="#"><i class="fa fa-reply"></i> Хариулах</a>
+                            <span class="divider"></span>
+                            <i class="fa fa-thumbs-up"></i>
+                            <span>20</span>
+                            <i class="fa fa-thumbs-down"></i>
+                            <span>4</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object" src="{% static 'comment_photo_2.png' %}" alt="">
+                    </a>
+                    <div class="media-body">
+                        <div class="media-heading">
+                            <a href="#">Бат</a> <span class="divider">|</span> <span class="light-gray">8 цагийн өмнө</span>
+                        </div>
+                        <p>Өөрөө сонирхолтой олон нийтлэл бичээрэй. Амжилт</p>
+                        <div class="media-footer">
+                            <a href="#"><i class="fa fa-reply"></i> Хариулах</a>
+                            <span class="divider"></span>
+                            <i class="fa fa-thumbs-up"></i>
+                            <span>0</span>
+                            <i class="fa fa-thumbs-down"></i>
+                            <span>0</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div> -->
+    </div>
+
+    <div class="post-comment-add">
+        <div class="block-title">
+            <h3>Сэтгэгдэл үлдээх</h3>
+        </div>
+        <form class="form-add-comment">
+            <div class="form-group">
+                <input class="form-control" placeholder="Таны нэр" name="name">
+                <div class="form-control-border"></div>
+                <i class="form-control-icon fa fa-user"></i>
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" placeholder="Сэтгэгдэл ..." name="message"></textarea>
+                <div class="form-control-border"></div>
+                <i class="form-control-icon fa fa-comment"></i>
+            </div>
+            <button class="button" type="submit">Илгээх</button>
+        </form>
+    </div>
+</section>
+{% endfor %} {% endblock content %}

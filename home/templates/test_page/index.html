@@ -1,0 +1,18 @@
+{% extends "base.html" %} {% block content %}
+<h1>Хэрэглэгчийн мэдээлэл</h1>
+{% if user.is_authenticated %}
+<p><span style="color: #000000; font: 1em times; font-size: x-large;">Системд нэвтрэх эрх:</span> {%if user.is_superuser is True %} Супер Хэрэглэгч буюу Системийн Админ {% else %} СОРИЛГО.МН цахим боловсролын системийн хэрэглэгч буюу сурагч {% endif %}
+</p>
+<p><span style="color: #000000; font: 1em times; font-size: x-large;">Хэрэглэгчийн нэр:</span> {{user.first_name}} {{user.last_name}}</p>
+<p><span style="color: #000000; font: 1em times; font-size: x-large;">Цахим хаяг:</span> {{user.email}}</p>
+{% endif %} {%if user.is_superuser is True %}
+<h2>Хийх зүйл</h2>
+<ol>
+    <li>Бүртгүүлэх хэсэг</li>
+    <li>Админ эрхээр орж бусад хэрэглэгчдийн мэдээллийг үздэг хэсэг</li>
+    <li>sorilgo-ийн темплайттэй холбох</li>
+    <li>Шалгалт зохиохдоо explanation(тайлбар) ашигладаг болгох энэ нь цаашид ногоон номны тестыг шалгалт болгож оруулахад ашиглана.</li>
+</ol>
+
+
+{% endif %} {% endblock %}
