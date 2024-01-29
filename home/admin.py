@@ -10,7 +10,7 @@ from quiz.models import Quiz, Category, Question, Progress, Level, Sitting
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin
 
-admin.site.site_header = 'SORILGO.MN сайтны админ'
+admin.site.site_header = 'BOD.MN сайтны админ'
 admin.site.site_title = "СОРИЛГО.МН"
 admin.site.index_title = "СОРИЛГО.МН-д тавтай морил. Танд энэ өдрийн мэнд хүргэе."
 

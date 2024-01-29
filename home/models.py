@@ -181,7 +181,7 @@ class home_info(models.Model):
     )
     home_email = models.EmailField(
         verbose_name = "Цахим хаяг",
-        help_text = "Ихэвчлэн sorilgomn@gmail.com байх бол уу"
+        help_text = "Ихэвчлэн bod@gmail.com байх бол уу"
     )
     home_phone = models.CharField(
         max_length = 200, 
