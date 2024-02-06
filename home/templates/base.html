@@ -9,7 +9,8 @@
     <title>{% trans "СОРИЛГО цахим боловсролын систем" %} | {% block title %}{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="Цахим боловсролыг бид дэмжинэ" />
-    <meta name="keywords" content="цахим, боловсрол, шинэ, эрин, эхлэл, сургууль, олон, улсын, хөтөлбөр, кембриж, 5-р, анги, education, international, cie, cambridge, online" />
+    <meta name="keywords"
+        content="цахим, боловсрол, шинэ, эрин, эхлэл, сургууль, олон, улсын, хөтөлбөр, кембриж, 5-р, анги, education, international, cie, cambridge, online" />
     <meta name="author" content="М. Бат-Эрдэнэ" />
     <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
     <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
@@ -32,18 +33,18 @@
     <meta name="description" content="{% block description %} {% endblock %}">
     <script type="text/javascript" id="MathJax-script" async
         src="https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/tex-mml-chtml.js">
-    </script>
+        </script>
     <script>
         MathJax = {
-        tex: {
-            inlineMath: [['$', '$'], ['\\(', '\\)']],
-            packages: ['base', 'newcommand', 'configMacros']
-        },
-        svg: {
-            fontCache: 'global'
-        }
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                packages: ['base', 'newcommand', 'configMacros']
+            },
+            svg: {
+                fontCache: 'global'
+            }
         };
-    </script>    
+    </script>
     <script language=JavaScript>
         function ieClicked() {
             if (document.all) {
@@ -51,31 +52,31 @@
             }
         }
         function firefoxClicked(e) {
-            if(document.layers||(document.getElementById&&!document.all)) {
-                if (e.which==2||e.which==3) {
+            if (document.layers || (document.getElementById && !document.all)) {
+                if (e.which == 2 || e.which == 3) {
                     return false;
                 }
             }
         }
-        if (document.layers){
+        if (document.layers) {
             document.captureEvents(Event.MOUSEDOWN);
-            document.onmousedown=firefoxClicked;
-        }else{
-            document.onmouseup=firefoxClicked;
-            document.oncontextmenu=ieClicked;
+            document.onmousedown = firefoxClicked;
+        } else {
+            document.onmouseup = firefoxClicked;
+            document.oncontextmenu = ieClicked;
         }
-        document.oncontextmenu=new Function("return false")
-        function disableselect(e){
+        document.oncontextmenu = new Function("return false")
+        function disableselect(e) {
             return false
-            }
-            function reEnable(){
+        }
+        function reEnable() {
             return true
-            }
-            document.onselectstart=new Function ("return false")
-            if (window.sidebar){
-            document.onmousedown=disableselect
-            document.onclick=reEnable
-            }
+        }
+        document.onselectstart = new Function("return false")
+        if (window.sidebar) {
+            document.onmousedown = disableselect
+            document.onclick = reEnable
+        }
     </script>
 </head>
 
@@ -115,7 +116,7 @@
                     <li>
                         <a href="{% url 'quiz_progress' %}">Хэрэглэгчийн явцын мэдээлэл</a>
                     </li>
-		    <li>
+                    <li>
                         <a href="{% url 'help_page' %}">Заавар, зөвлөмж</a>
                     </li>
                     {%if user.teacher_status.is_teacher is True %}
@@ -129,7 +130,7 @@
                         <a href="{% url 'quiz_marking' %}">Хэрэглэгчдийн мэдээлэл</a>
 
                     </li>
-<li>
+                    <li>
                         <a href="{% url 'admin:index' %}">Админ хуудас руу орох</a>
                     </li>
                     {% endif %} {% else %}
@@ -154,7 +155,7 @@
                     <li>
                         {% if user.is_authenticated %}
                         <a href="{% url 'logout' %}">Системээс гарах</a> {% else %}
-                        <a href="{% url 'login' %}">Нэвтрэх</a> {% endif %}
+                        <a href="{% url 'login' %}">Цахим шалгалт өгөх</a> {% endif %}
                     </li>
                 </ul>
                 <!-- /Main menu -->
@@ -162,10 +163,15 @@
                 <ul class="social-links">
                     <li><a class="tip social-button" href="#" title="Twitter"><i class="fa fa-twitter"></i></a></li>
                     <!-- Full list of social icons: http://fontawesome.io/icons/#brand -->
-                    <li><a class="tip social-button" href="https://www.facebook.com/bodmn/" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                    <li><a class="tip social-button" href="#" title="Google Plus"><i class="fa fa-google-plus"></i></a></li>
-                    <li><a class="tip social-button" href="https://www.youtube.com/channel/UCteGI98wkpws9MBlS4G6uwQ?view_as=subscriber" title="Youtube"><i class="fa fa-youtube"></i></a></li>
-                    <li><a class="tip social-button" href="https://www.instagram.com/bodmn" title="instagram"><i class="fa fa-instagram"></i></a></li>
+                    <li><a class="tip social-button" href="https://www.facebook.com/bodmn/" title="Facebook"><i
+                                class="fa fa-facebook"></i></a></li>
+                    <li><a class="tip social-button" href="#" title="Google Plus"><i class="fa fa-google-plus"></i></a>
+                    </li>
+                    <li><a class="tip social-button"
+                            href="https://www.youtube.com/channel/UCteGI98wkpws9MBlS4G6uwQ?view_as=subscriber"
+                            title="Youtube"><i class="fa fa-youtube"></i></a></li>
+                    <li><a class="tip social-button" href="https://www.instagram.com/bodmn" title="instagram"><i
+                                class="fa fa-instagram"></i></a></li>
                     <li><a class="tip social-button" href="#" title="Dribbble"><i class="fa fa-dribbble"></i></a></li>
                 </ul>
                 <!-- /Social buttons -->
@@ -194,7 +200,7 @@
                         {% if messages %} {% for message in messages %}
                         <div class="alert alert-warning alert-dismissable" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                              <span aria-hidden="true"><sup>&times;</sup></span>
+                                <span aria-hidden="true"><sup>&times;</sup></span>
                             </button> {{message}}
                         </div>
                         {% endfor %} {% endif %}
