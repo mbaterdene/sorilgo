@@ -1,5 +1,5 @@
 """
-ASGI config for sorilgo_v8 project.
+ASGI config for soril_webApp project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'sorilgo_v8.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'soril_webApp.settings')
 
 application = get_asgi_application()

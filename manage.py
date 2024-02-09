@@ -5,7 +5,7 @@ import sys
 
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'sorilgo_v8.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'soril_webApp.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
