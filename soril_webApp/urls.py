@@ -39,6 +39,8 @@ urlpatterns = [
     path("progress/<int:pk>/",view=QuizProgressDetail.as_view(),name='quiz_progress_detail'), 
     path("<slug:slug>/",view=QuizDetailView.as_view(),name='quiz_start_page'),
     path("<slug:quiz_name>/take/",view=QuizTake.as_view(),name='quiz_question'),
+
+    path('', include('accounts.urls')),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
